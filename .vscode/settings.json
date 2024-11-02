@@ -1,0 +1,16 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=/home/michal/robots/hex_bm/out/hex/STM32F446_Flash"
+    ],
+    "cmsis-csolution.actions": [
+        {
+            "path": "hex_bm.csolution.yml",
+            "target": "STM32F446_Flash",
+            "config": {
+                "run": "Flash Device",
+                "debug": "Arm Debugger"
+            }
+        }
+    ],
+    "cmake.ignoreCMakeListsMissing": true
+}

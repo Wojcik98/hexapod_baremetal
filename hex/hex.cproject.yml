@@ -1,0 +1,87 @@
+# A project translates into one executable or library.
+project:
+  setups:
+    - setup: Options for STM32F446_Flash
+      for-context: +STM32F446_Flash
+      processor:
+        fpu: sp
+      debug: on
+      optimize: debug
+      define:
+        - __MICROLIB
+      define-asm:
+        - __MICROLIB
+      misc:
+        - C:
+            - -std=c99
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -fno-function-sections
+            - -Wno-packed
+            - -Wno-missing-variable-declarations
+            - -Wno-missing-prototypes
+            - -Wno-missing-noreturn
+            - -Wno-sign-conversion
+            - -Wno-nonportable-include-path
+            - -Wno-reserved-id-macro
+            - -Wno-unused-macros
+            - -Wno-documentation-unknown-command
+            - -Wno-documentation
+            - -Wno-license-management
+            - -Wno-parentheses-equality
+          CPP:
+            - -xc++
+            - -std=c++11
+          Link:
+            - --library_type=microlib
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+  # linker:
+  #   - script: RTX_Blinky_STM32F446_Flash.sct
+  #     for-context: +STM32F446_Flash
+  groups:
+    - group: Source Files
+      files:
+        - file: main.cpp
+        - file: hexapod.cpp
+        - file: hexapod.hpp
+        - file: tripod.cpp
+        - file: tripod.hpp
+        - file: servo_comm.cpp
+        - file: servo_comm.hpp
+        - file: gait.hpp
+        - file: legs.hpp
+
+  # List components to use for your application.
+  # A software component is a re-usable unit that may be configurable.
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: Keil::Board Support&NUCLEO-F446RE:Buttons
+    - component: Keil::Board Support&NUCLEO-F446RE:LED
+    - component: Keil::Device:Startup
+      misc:
+        - ASM:
+            - -masm=auto
+    - component: Keil::Device:STM32Cube HAL:DMA
+    - component: Keil::Device:STM32Cube HAL:Common@1.8.1
+    - component: Keil::Device:STM32Cube Framework:Classic
+    - component: Keil::Device:STM32Cube HAL:Cortex
+    - component: Keil::Device:STM32Cube HAL:RCC
+    - component: Keil::Device:STM32Cube HAL:PWR
+    - component: Keil::Device:STM32Cube HAL:GPIO
+    - component: Keil::Device:STM32Cube HAL:UART
+  packs:
+    - pack: Keil::STM32F4xx_DFP@2.17.1
