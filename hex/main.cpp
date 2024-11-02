@@ -11,7 +11,6 @@ extern "C" {
 #include "hexapod.hpp"
 #include "legs.hpp"
 #include "servo_comm.hpp"
-// #include "simple_tripod.hpp"
 #include "tripod.hpp"
 
 std::atomic_bool initialized;
