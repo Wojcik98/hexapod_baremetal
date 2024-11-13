@@ -82,11 +82,6 @@ void ServoComm::trigger_transmit() volatile {
     if (cmd[0] == MULTIPLE_TARGETS_CMD) {
         auto resp =
             HAL_UART_Transmit_DMA(&uart6, (uint8_t *)cmd, SINGLE_CMD_SIZE);
-        if (resp != HAL_OK) {
-            LED_On(0);
-        } else {
-            LED_Off(0);
-        }
     }
 
     // Switch the buffer
