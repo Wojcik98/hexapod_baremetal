@@ -20,6 +20,7 @@ project:
             - -fshort-enums
             - -fshort-wchar
             - -fno-function-sections
+            - -fno-exceptions
             - -Wno-packed
             - -Wno-missing-variable-declarations
             - -Wno-missing-prototypes
@@ -57,12 +58,11 @@ project:
       files:
         - file: main.cpp
         - file: hexapod.cpp
-        - file: hexapod.hpp
         - file: tripod.cpp
-        - file: tripod.hpp
         - file: servo_comm.cpp
-        - file: servo_comm.hpp
-        - file: gait.hpp
+        - file: rf24/rf24.cpp
+        - file: rf24/gpio.cpp
+        - file: rf24/spi.cpp
         - file: legs.hpp
 
   # List components to use for your application.
@@ -83,5 +83,6 @@ project:
     - component: Keil::Device:STM32Cube HAL:PWR
     - component: Keil::Device:STM32Cube HAL:GPIO
     - component: Keil::Device:STM32Cube HAL:UART
+    - component: Keil::Device:STM32Cube HAL:SPI
   packs:
     - pack: Keil::STM32F4xx_DFP@2.17.1
